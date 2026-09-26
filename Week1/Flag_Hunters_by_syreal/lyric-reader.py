@@ -82,7 +82,7 @@ REFRAIN;
 END;
 '''
 
-MAX_LINES = 1000
+MAX_LINES = 100
 
 def reader(song, startLabel):
   lip = 0
@@ -124,7 +124,7 @@ def reader(song, startLabel):
         finished = True
       else:
         print(line, flush=True)
-        time.sleep(0.01)
+        time.sleep(0.5)
         lip += 1
 
 
