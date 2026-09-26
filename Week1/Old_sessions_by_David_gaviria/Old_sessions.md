@@ -6,7 +6,7 @@ Description:
   
 Approach: 
 	First registered a new account on the website, then noticed the comment which told to check /sessions
-	/sessions gave me the admin's login cookie data value which i then used and reloaded the page.
+	/sessions gave me the admin's login cookie data value which i then used to replace my own session data to admins cookie session data and reloaded the page.
 	The flag was revealed.
 
 One line to remember them all:

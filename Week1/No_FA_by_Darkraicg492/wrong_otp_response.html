@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>OTP Verification</title>
+        <link rel="stylesheet" type="text/css" href="/static/css/materialize.min.css" />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    </head>
+
+    <body>
+        <nav>
+            <div class="nav-wrapper">
+                <a href="/" class="brand-logo">Home</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    
+                        <li><a href="/logout">Logout</a></li>
+                    
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container">
+            
+                
+                    <div class="row">
+                        
+                            <div class="col s12">
+                                <div class="card-panel red">
+                                    <span class="white-text">Invalid OTP or OTP expired</span>
+                                </div>
+                            </div>
+                        
+                    </div>
+                
+            
+            
+  <div class="block">
+    <h2>OTP Verification</h2>
+    <p>Enter the OTP sent to your registered email:</p>
+    <form method="post" id="otp-form">
+      <div class="row otp-inputs">
+        <div class="input-field col s3">
+          <input id="otp1" type="text" maxlength="1" class="center-align validate otp-input" required>
+        </div>
+        <div class="input-field col s3">
+          <input id="otp2" type="text" maxlength="1" class="center-align validate otp-input" required>
+        </div>
+        <div class="input-field col s3">
+          <input id="otp3" type="text" maxlength="1" class="center-align validate otp-input" required>
+        </div>
+        <div class="input-field col s3">
+          <input id="otp4" type="text" maxlength="1" class="center-align validate otp-input" required>
+        </div>
+      </div>
+      <input type="hidden" name="otp" id="otp" value="">
+      <button class="btn waves-effect waves-light" type="submit" name="action">Verify & Login
+        <i class="material-icons right">send</i>
+      </button>
+    </form>
+  </div>
+
+  <style>
+    .block {
+      width: 400px;
+      margin: 50px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      text-align: center;
+    }
+
+    .otp-inputs {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .otp-inputs .input-field input {
+      font-size: 1.5rem;
+      text-align: center;
+      height: 3rem;
+      width: 3rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .resend-code {
+      margin-top: 15px;
+    }
+
+    .resend-code a {
+      color: #007bff;
+      text-decoration: none;
+      margin-right: 10px;
+    }
+
+    .resend-code a:hover {
+      text-decoration: underline;
+    }
+  </style>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const inputs = document.querySelectorAll('.otp-input');
+      const hiddenOtpField = document.getElementById('otp');
+      const form = document.getElementById('otp-form');
+
+      // Automatically move to the next input field
+      inputs.forEach((input, index) => {
+        input.addEventListener('input', (e) => {
+          if (e.target.value.length === 1 && index < inputs.length - 1) {
+            inputs[index + 1].focus();
+          }
+          updateHiddenOtp();
+        });
+
+        input.addEventListener('keydown', (e) => {
+          if (e.key === 'Backspace' && index > 0 && e.target.value === '') {
+            inputs[index - 1].focus();
+          }
+        });
+      });
+
+      // Concatenate OTP inputs into the hidden field
+      function updateHiddenOtp() {
+        let otp = '';
+        inputs.forEach(input => {
+          otp += input.value;
+        });
+        hiddenOtpField.value = otp;
+      }
+
+      // Ensure OTP is updated before form submission
+      form.addEventListener('submit', (e) => {
+        updateHiddenOtp();
+      });
+    });
+  </script>
+
+            <hr/>
+        </div>
+
+        <script src="/static/js/materialize.min.js"></script>
+    </body>
+</html>
